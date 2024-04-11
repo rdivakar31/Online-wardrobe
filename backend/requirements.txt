@@ -1,0 +1,7 @@
+Flask==3.0.2
+Flask-Cors==4.0.0
+rembg==2.0.56
+requests==2.31.0
+firebase-admin==6.5.0
+pillow==10.2.0
+requests==2.31.0

@@ -1,0 +1,96 @@
+/* Calendar.css - Add or update the following styles */
+
+/* Ensure the entire calendar container is centered and limited in width for larger appearance */
+.calendarContainer {
+  display: flex; /* Use flexbox to center children */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-height: 100vh; /* Take up full viewport height */
+  padding: 20px;
+  background-color: #f8f9fa; /* Background color of the outside container */
+}
+
+/* Style for the actual calendar */
+.calendar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: white; /* White background for the calendar */
+  padding: 20px;
+  width: 1000px; 
+  /* Let the width be determined by its content up to the max-width */
+  height: 800px;
+  overflow: hidden; /* Hide any overflowing content */
+}
+
+/* Style for each calendar tile */
+.react-calendar__tile {
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #e6e6e6;
+  margin: 4px;
+  max-width: 130px; /* 控制格子的最大宽度 */
+  height: 140px; /* 控制格子的高度 */
+  display: flex; /* 使用flex布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: flex-start; /* 顶部对齐 */
+  overflow: hidden; /* 隐藏溢出的内容 */
+}
+
+/* Ensure the date number and the image are positioned correctly */
+/* Adjust the position of the date number within the tile */
+.react-calendar__tile > abbr {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: none;
+  border: none;
+  font-size: 1em; /* Adjust the font size if necessary */
+}
+
+/* Container for the title image */
+.titleImage {
+  width: 100%; /* 缩略图宽度占满整个格子宽度 */
+  height: auto; /* 高度自动调整 */
+  position: absolute; /* 绝对定位 */
+  bottom: 5px; /* 与底部的距离 */
+  left: 50%; /* 水平居中 */
+  transform: translateX(-50%); /* 向左偏移自身宽度的50%以实现完美居中 */
+  border-radius: 10px; /* 圆角 */
+}
+
+/* Style for the image inside the titleImage container */
+.titleImage img {
+  width: 70%;
+  height: 70%; 
+  object-fit: cover; /* 裁剪图片以保持纵横比 */
+  border-radius: 10px; /* 圆角 */
+}
+
+/* Additional responsive adjustments */
+@media (max-width: 768px) {
+  .calendarContainer {
+    padding: 10px; /* Reduce padding on smaller screens */
+  }
+  
+  .calendar {
+    max-width: 100%; /* Allow the calendar to fill the container on smaller screens */
+  }
+  
+  .react-calendar__tile {
+    /* Reduce the size of the tiles on smaller screens */
+    max-height: 80px;
+    min-height: 80px;
+    margin: 1%; /* Increase margin for better spacing */
+  }
+  
+  /* Adjust the size of the date number and image on smaller screens */
+  .react-calendar__tile > abbr {
+    font-size: 0.8em;
+  }
+  
+  .titleImage img {
+    width: 30px; /* Smaller images on smaller screens */
+    height: 30px;
+  }
+}

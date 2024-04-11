@@ -1,0 +1,258 @@
+.text-small-caps {
+    font-variant: small-caps;
+    }
+    
+    
+    
+    .start-page-container{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    min-height: 100vh;
+    }
+    
+    
+    
+    .left-section{
+    position: relative;
+    width: 100%;
+    }
+    
+    
+    
+    .logo-container{
+    display: flex;
+    padding: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    }
+    .logo-container img{
+    width: 200px;
+    }
+    .navigation{
+    display: flex;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    justify-content: space-evenly;
+    font-weight: 400;
+    list-style: none;
+    }
+    
+    
+    
+    .navigation li{
+    cursor: pointer;
+    }
+    .navigation li:hover{
+    opacity: 0.8;
+    }
+    .main-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    }
+    .main-content h1{
+    margin-top: 4rem;
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 700;
+    }
+    .main-content p{
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    margin-top: 4rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    text-align: center;
+    color: #4B5563;
+    }
+    .reclaim{
+    margin-top: 1.75rem !important;
+    }
+    .cta-btn{
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+    margin-top: 2.5rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: #ffffff;
+    background-color: #000000;
+    }
+    .cta-btn:hover{
+    opacity: 0.8;
+    }
+    
+    
+    
+    .right-section{
+    margin-top: 2.5rem;
+    width: 100%;
+    background-color: #000000;
+    }
+    .right-side-logo{
+    display: none;
+    padding: 1.25rem;
+    justify-content: center;
+    }
+    .right-side-logo img{
+    height: 70px;
+    }
+
+    .right-side-logo p{
+        color:white
+    }
+    .start-page-images{
+    position: relative;
+    height: 650px;
+    }
+    .start-page-image-1{
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 1.25rem;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    width: 40%;
+    height: 250px;
+    }
+    .start-page-image-1 img{
+    z-index: 10;
+    height: 90%;
+    width: 85%;
+    }
+    .start-page-image-2{
+    display: flex;
+    position: absolute;
+    top: 11rem;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    width: 40%;
+    height: 250px;
+    right: 30%;
+    }
+    .start-page-image-2 img{
+    z-index: 20;
+    height: 90%;
+    width: 85%;
+    }
+    .start-page-image-3{
+    display: flex;
+    position: absolute;
+    top: 20rem;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    width: 40%;
+    height: 250px;
+    right: 60%;
+    }
+    .start-page-image-3 img{
+    z-index: 20;
+    height: 90%;
+    width: 85%;
+    }
+    
+    
+    
+    .start-page-footer{
+    position: fixed;
+    bottom: 0;
+    z-index: 50;
+    padding: 0.75rem;
+    width: 100%;
+    color: #ffffff;
+    background-color: #000000;
+    }
+    .social-media-icons{
+    display: flex;
+    justify-content: space-evenly;
+    }
+    .social-media-icons img{
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    }
+    .social-media-icons img:hover{
+    opacity: 0.8;
+    }
+    
+    
+    
+    /* medium screens */
+    @media (min-width: 768px) {
+    .start-page-container{
+    flex-direction: row
+    }
+    .left-section{
+    width: 50%;
+    }
+    .logo-container{
+    display: none
+    }
+    .navigation{
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    }
+    .main-content h1{
+    margin-top: 6rem;
+    }
+    .main-content p{
+    width: 75%;
+    }
+    .right-section{
+    margin-top: 0;
+    width: 50%;
+    }
+    .right-side-logo{
+    display: flex;
+    }
+    .start-page-images{
+    height: 100%;
+    background-color: black;
+    }
+    .start-page-image-1{
+    top: 0;
+    height: 45%;
+    }
+    .start-page-image-2{
+    top: 10rem;
+    height: 40%;
+    }
+    .start-page-image-3{
+    top: 20rem;
+    height: 45%;
+    }
+    .start-page-footer{
+    padding: 1.25rem;
+    }
+    
+    
+    
+    }
+    
+    
+    
+    /* large screens */
+    @media (min-width: 1024px) {
+    
+    
+    
+    .left-section{
+    width: 58.333333%;
+    }
+    .right-section{
+    width: 41.666667%;
+    }
+    
+    
+    
+    }
