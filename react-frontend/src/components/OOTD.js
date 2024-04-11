@@ -43,27 +43,32 @@ const OOTD = () => {
 
   useEffect(() => {
     const fetchOOTDs = async () => {
-        if (!currentUser || !currentUser.uid) {
-            console.log("No user found");
-            return;
-        }
-        const db = getFirestore();
-        // set up a query to get all OOTDs for the current user
-        const ootdCollectionRef = collection(db, "OOTD");
-        const q = query(ootdCollectionRef, where("user_id", "==", currentUser.uid));
-        const querySnapshot = await getDocs(q); // getDocs() returns a list of documents
-
+      if (!currentUser || !currentUser.uid) {
+        console.log("No user found");
+        return;
+      }
+      const db = getFirestore();
+      // 获取特定用户的OOTD子集合引用
+      const userOOTDOutfitsRef = collection(db, "OOTD", currentUser.uid, "outfits");
+      
+      try {
+        // 获取该子集合中的所有文档
+        const querySnapshot = await getDocs(userOOTDOutfitsRef);
+  
         const fetchedOOTDs = [];
         querySnapshot.forEach((doc) => {
-            //fetchedOOTDs.push(doc.data().outfit_url); 
-            // 这里也保存文档ID
-            fetchedOOTDs.push({ id: doc.id, url: doc.data().outfit_url }); 
+          // 保存文档ID和URL
+          fetchedOOTDs.push({ id: doc.id, url: doc.data().outfit_url }); 
         });
-        setOutfits(fetchedOOTDs); 
+        setOutfits(fetchedOOTDs);
+      } catch (error) {
+        console.error("Error fetching outfits:", error);
+      }
     };
-
+  
     fetchOOTDs();
-}, [currentUser]);
+  }, [currentUser]);
+  
 
   const handleSaveOutfit = async () => {
     if (selectedClothes.length === 0 || selectedClothes.length > 6) {

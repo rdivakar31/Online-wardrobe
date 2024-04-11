@@ -30,7 +30,7 @@ const CalendarPage = () => {
         return;
       }
       const db = getFirestore();
-      const outfitColRef = collection(db, "OOTD");
+      const outfitColRef = collection(db, "OOTD",currentUser.uid, "outfits");
       const q = query(outfitColRef, where("user_id", "==", currentUser.uid));
       const querySnapshot = await getDocs(q);
       let tempOutfits = [];

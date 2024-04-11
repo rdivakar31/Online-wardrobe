@@ -1,12 +1,11 @@
 from firebase_admin import firestore
-# from datetime import datetime
 
 def save_to_firestore(outfit_url, file_name, user_id):
     db = firestore.client()
-    ootd_collection = db.collection('OOTD')
+    user_ootd_collection = db.collection('OOTD').document(user_id).collection('outfits')
     
-    # 创建一个新的文档s
-    doc_ref = ootd_collection.document()
+    # 在OOTD/{user_id}/outfits下创建一个新的文档
+    doc_ref = user_ootd_collection.document()
     doc_ref.set({
         'user_id': user_id,
         'outfit_url': outfit_url,
@@ -15,7 +14,6 @@ def save_to_firestore(outfit_url, file_name, user_id):
     })
 
     return doc_ref.id
-
 
 # def save_to_firestore(outfit_url, user_id):
 #     db = firestore.client()
