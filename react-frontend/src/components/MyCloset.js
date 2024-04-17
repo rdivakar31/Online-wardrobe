@@ -19,9 +19,6 @@ import { useNavigate } from "react-router-dom";
 import { doSignOut } from "../firebase/FirebaseFunctions";
 import WeatherForecast from "./WeatherForecast";
 
-
-
-
 // 更新衣物分类
 const categories = [
   "T-shirts",
@@ -52,27 +49,17 @@ const categories = [
   "Accessories",
 ];
 
-
-
-
 const MyCloset = () => {
   const currentUser = useContext(AuthContext);
   const navigate = useNavigate();
   const [clothes, setClothes] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All Clothes");
 
-
-
-
   useEffect(() => {
     const fetchClothes = async () => {
       if (!currentUser) return;
       const db = getFirestore();
       const docRef = doc(db, "closets", currentUser.uid);
-
-
-
-
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setClothes(docSnap.data().items || []);
@@ -80,14 +67,8 @@ const MyCloset = () => {
         console.log("No such document exists!");
       }
     };
-
-
-
-
     fetchClothes();
   }, [currentUser]);
-
-
 
 
   const handleSignOut = () => {
@@ -96,15 +77,9 @@ const MyCloset = () => {
     alert("You have been signed out.");
   };
 
-
-
-
   const handleListItemClick = (category) => {
     setSelectedCategory(category);
   };
-
-
-
 
   //delete an item from the db and update the list
   const deleteClothingItem = async (itemName) => {
@@ -112,10 +87,6 @@ const MyCloset = () => {
       console.error("Invalid itemName:", itemName);
       return;
     }
-
-
-
-
     const db = getFirestore();
     const docRef = doc(db, "closets", currentUser.uid);
     const updatedClothes = clothes.filter((item) => item.name !== itemName);
@@ -126,9 +97,6 @@ const MyCloset = () => {
         items: updatedClothes,
       });
 
-
-
-
       setClothes(updatedClothes);
     } catch (error) {
       console.error("Error deleting item:", error);
@@ -136,18 +104,12 @@ const MyCloset = () => {
     }
   };
 
-
-
-
   // Calculate the number of items in a category
   const countItemsInCategory = (category) => {
     return clothes.filter(
       (clothe) => category === "All Clothes" || clothe.category === category
     ).length;
   };
-
-
-
 
   const buttonStyle = {
     backgroundColor: 'transparent',
@@ -174,10 +136,6 @@ const MyCloset = () => {
     });
   });
  
-
-
-
-
   return (
     <Box className="my-closet">
      
@@ -201,22 +159,18 @@ const MyCloset = () => {
     >
       OOTD
     </button>
+    <button
+      onClick={() => navigate("/calendar")}
+      style={buttonStyle}
+    >
+      Calendar
+    </button>
     <button onClick={handleSignOut} style={buttonStyle}>
       Sign Out
-    </button>
-   
+    </button> 
   </Box>
 
-
-
-
         <WeatherForecast />
-
-
-
-
-
-
 
 
       <Box sx={{ display: "flex", flexGrow: 1 }}>
@@ -229,11 +183,7 @@ const MyCloset = () => {
             position: "sticky",
             top: 0,
             height: "550px",
-
-
-
-
-          }}
+         }}
         >
           <List>
             {/* count */}
@@ -261,14 +211,6 @@ const MyCloset = () => {
             })}
           </List>
         </Box>
-
-
-
-
-
-
-
-
        
         <Box sx={{ flex: 6, overflow: "auto", padding: 4 }}>
           <Grid
@@ -339,8 +281,6 @@ const MyCloset = () => {
     </Box>
   );
 };
-
-
 
 
 export default MyCloset;
