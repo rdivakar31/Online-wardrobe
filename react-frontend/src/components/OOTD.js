@@ -124,7 +124,7 @@ const OOTD = () => {
             return;
         }
         const db = getFirestore();
-        const docRef = doc(db, "OOTD", outfitId);
+        const docRef = doc(db, "OOTD", currentUser.uid, "outfits", outfitId);
       
         if(window.confirm("Are you sure you want to delete this outfit?")) {
           try {
