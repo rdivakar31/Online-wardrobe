@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { getFirestore, doc, collection, query, where, getDocs, setDoc } from "firebase/firestore";
+import { getFirestore, doc, collection, query, where, getDocs, setDoc,deleteDoc } from "firebase/firestore";
 import { AuthContext } from "../firebase/Auth";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -22,6 +22,8 @@ const CalendarPage = () => {
   const [dateOfoutfit, setDateOfoutfit] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
+  const [isOutfitAssignedForSelectedDate, setIsOutfitAssignedForSelectedDate] = useState(false);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,6 +90,11 @@ const CalendarPage = () => {
     setSelectedDate(value);
     setModalOpen(true);
     setSelectedOutfit(null);
+
+    // 检查是否有为该日期分配的搭配，并设置状态
+    const dateString = value.toISOString().split('T')[0];
+    const isOutfitAssigned = dateOfoutfit.some(outfit => outfit.date === dateString);
+    setIsOutfitAssignedForSelectedDate(isOutfitAssigned);
   };
 
   const handleSaveOutfit = async () => {
@@ -133,12 +140,45 @@ const CalendarPage = () => {
       alert('Error saving outfit for the day.');
     }
   };
+
+  const handleDeleteOutfit = async () => {
+    if (!currentUser || !selectedDate) {
+      alert("No user or no date selected");
+      return;
+    }
+  
+    const dateString = selectedDate.toISOString().split('T')[0];
+  
+    try {
+      const db = getFirestore();
+      const userCalendarRef = doc(db, "Calendar", currentUser.uid);
+      const datesCollectionRef = collection(userCalendarRef, "dates");
+      const dateDocRef = doc(datesCollectionRef, dateString);
+      
+      await deleteDoc(dateDocRef); // 删除 Firestore 中的文档
+  
+      setDateOfoutfit(prevOutfits => prevOutfits.filter(outfit => outfit.date !== dateString)); // 更新状态移除已删除的搭配
+      setIsOutfitAssignedForSelectedDate(false); // 重置按钮状态
+      alert('Outfit deleted for the date!');
+      setModalOpen(false); // 关闭模态框
+    } catch (error) {
+      console.error('Error deleting outfit for the date: ', error);
+      alert('Failed to delete outfit for the date.');
+    }
+  };
   
   
 
   const handleSelect = (outfit) => {
-    setSelectedOutfit(outfit);
+    // 如果已经选中了这件衣服，取消选中
+    if (selectedOutfit && selectedOutfit.id === outfit.id) {
+      setSelectedOutfit(null);
+    } else {
+      // 否则，设置为选中状态
+      setSelectedOutfit(outfit);
+    }
   }
+  
 
   const handleSignOut = () => {
     doSignOut();
@@ -210,20 +250,20 @@ const CalendarPage = () => {
                           component="img"
                           image={outfit.outfit_url}
                           alt="outfit"
-                          sx={{ width: '100%', height: 'auto' }}
+                          sx={{ width: '85%', height: 'auto' }}
                       />
                       <FormControlLabel
-                          control={
+                        control={
                           <Checkbox
-                            checked={!!(selectedOutfit && selectedOutfit.id === outfit.id)}
+                            checked={selectedOutfit && selectedOutfit.id === outfit.id}
                             onChange={() => handleSelect(outfit)}
-                            name="checkedB"
+                            name="selectedOutfit"
                             color="primary"
                           />
-                         }
-                            label=""
-                            style={{ position: 'absolute', bottom: 10, left: 10 }}
-                            />
+                        }
+                        label=""
+                        style={{ position: 'absolute', bottom: 5, left: 10 }}
+                      />
                         </Card>
                           </Grid>
                           ))}
@@ -233,6 +273,15 @@ const CalendarPage = () => {
                             Save for the day
                             </Button>
                         </Box>
+                        <Button
+                        onClick={handleDeleteOutfit}
+                        variant="contained"
+                        color="error"
+                        disabled={!isOutfitAssignedForSelectedDate}
+                        style={{ marginLeft: '10px' }}
+                      >
+                        Delete Outfit of the Date
+                      </Button>
                         </Box>
                         </Modal>
                         </Box>
