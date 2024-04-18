@@ -15,10 +15,10 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background-color: white; /* White background for the calendar */
-  padding: 20px;
-  width: 1000px; 
+  padding: 15px;
+  width: 800px; 
   /* Let the width be determined by its content up to the max-width */
-  height: 800px;
+  height: 700px;
   overflow: hidden; /* Hide any overflowing content */
 }
 
@@ -29,8 +29,8 @@
   border-radius: 8px;
   border: 1px solid #e6e6e6;
   margin: 4px;
-  max-width: 130px; /* 控制格子的最大宽度 */
-  height: 140px; /* 控制格子的高度 */
+  max-width: 110px; /* 控制格子的最大宽度 */
+  height: 120px; /* 控制格子的高度 */
   display: flex; /* 使用flex布局 */
   justify-content: center; /* 水平居中 */
   align-items: flex-start; /* 顶部对齐 */

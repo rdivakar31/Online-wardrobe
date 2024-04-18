@@ -14,15 +14,14 @@
   justify-content: flex-end;
   align-items: center;
   padding: 20px;
-  background-color: #000;
-  color: #fff;
+  background-color: #d8b7b7;
 }
 
 .header button {
   margin-right: 35px; /* Adjust margin as needed */
   background-color: transparent;
   border: none;
-  color: #fff;
+  color: black;
   font-size: 16px;
   cursor: pointer;
 }
@@ -35,12 +34,12 @@
 /* Styles for the sidebar */
 .sidebar {
   width: 15%;
-  border-right: 1px solid #fff;
+  border-right: 1px solid #f0fdff;
   overflow-y: auto;
   position: sticky;
   top: 0;
   height: calc(100vh - 68px); /* Adjust based on the header height */
-  background-color: #000;
+  background-color: #ffe8e8;
 }
 
 /* Styles for the clothing categories list */
