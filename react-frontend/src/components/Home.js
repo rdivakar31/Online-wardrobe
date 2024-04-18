@@ -189,13 +189,20 @@ const Home = () => {
             <select onChange={(e) => {
               if (e.target.value === 'myCloset') {
                 navigate('/myCloset');
-              } else if (e.target.value === 'signOut') {
+              } else if (e.target.value === 'OOTD') {
+                navigate('/ootd');
+              } else if (e.target.value === 'Calendar') {
+                navigate('/calendar');
+              }
+              else if (e.target.value === 'signOut') {
                 handleSignOut();
               }
             }} /*style={{background: "none", border: "none", cursor: "pointer"}}*/>
               <option value="">{`Welcome, ${currentUser.displayName || 'User'}`}</option>
               <option value="myCloset">Account</option>
               <option value="myCloset">My Closet</option>
+              <option value="OOTD">OOTD</option>
+              <option value="Calendar">Calendar</option>
               <option value="signOut">Sign Out</option>
             </select>
           </>
@@ -205,8 +212,9 @@ const Home = () => {
               {/*<Link to="/Home">Home</Link>*/}
               {/*<Link to="/VirtualCloset">Virtual Closet</Link>*/}
               {/*<Link to="/AboutUs">About Us</Link>*/}
-              <Link to="/register">Sign Up</Link>
-              <Link to="/login">Login</Link>
+              <Link to="/register" style={{ color: 'black' }}>Sign Up |</Link>
+              {/* <span style={{ color: 'black' }}>{" | "}</span> */}
+              <Link to="/login" style={{ color: 'black' }}>Login</Link>
               {/*<Link to="/Home" className="LogOUT">Logout</Link>*/}
           </div>
           </>
