@@ -200,7 +200,22 @@ const CalendarPage = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, paddingLeft: '20px' }}>
+    <>
+      <Box className="header" 
+          sx={{ 
+              backgroundColor: '#ffe8e8',
+              display: 'flex',
+              position: 'sticky',
+              top: 0,
+              left: 0,
+              right: 0,
+              zIndex: 100,
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '10px 20px'
+          }}>
+          {/* 添加点击事件，点击 logo 时跳转到主页 */}
+          <img src='WWLogo.jpg' alt="Logo" style={{ width: '50px', cursor: 'pointer' }} onClick={() => navigate('/')} />
       {/* Dropdown menu and other components omitted for brevity */}
       {currentUser && (
       <select
@@ -217,7 +232,7 @@ const CalendarPage = () => {
                   handleSignOut(); 
               }
           }}
-          style={{ position: 'absolute', top: 10, right: 10 }}
+          style={{ position: 'absolute', top: 35, right: 55 }}
       >
           <option value="Calendar">Calendar</option>
           <option value="OOTD">OOTD</option>
@@ -226,8 +241,9 @@ const CalendarPage = () => {
           <option value="signOut">Sign Out</option>
         </select>
       )}
-
-      <Box className="calendarContainer">
+      </Box>
+    <Box sx={{ flexGrow: 1, paddingLeft: '20px',backgroundColor:'#f0fdff'}}>
+      <Box className="calendarContainer" sx={{backgroundColor:'#f0fdff'}}>
         <ReactCalendar
           className="calendar"
           onChange={setSelectedDate}
@@ -286,6 +302,7 @@ const CalendarPage = () => {
                         </Modal>
                         </Box>
                       </Box>
+                    </>
                          );
                     }
 export default CalendarPage;
