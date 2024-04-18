@@ -114,7 +114,7 @@ const MyCloset = () => {
   const buttonStyle = {
     backgroundColor: 'transparent',
     border: 'none',
-    color: '#fff',
+    color: 'white',
     fontSize: '16px',
     cursor: 'pointer',
     marginRight: '35px', // Adjust margin as needed
@@ -137,10 +137,20 @@ const MyCloset = () => {
   });
  
   return (
-    <Box className="my-closet">
+    <Box className="my-closet"> 
      
-  <Box className="header">
-    <img src="WWLogo.png" alt="Logo" style={{ width: '250px', marginRight: '850px' }} />
+  <Box className="header" 
+  sx={{ backgroundColor: '#d8b7b7',
+  display: 'flex',
+  position: 'sticky',
+  top: 0,
+  left: 0,
+  right: 0,
+  zIndex: 100,
+  justifyContent: 'space-between',
+  alignItems: 'center'
+  }}>
+    <img src='WWLogo.jpg' alt="Logo" style={{ width: '50px', marginRight: '850px'}} onClick={() => navigate('/')}/>
     <button
       onClick={() => navigate("/")}
       style={buttonStyle}
@@ -172,7 +182,6 @@ const MyCloset = () => {
 
         <WeatherForecast />
 
-
       <Box sx={{ display: "flex", flexGrow: 1 }}>
         <Box
           sx={{
@@ -182,7 +191,7 @@ const MyCloset = () => {
             borderColor: "divider",
             position: "sticky",
             top: 0,
-            height: "550px",
+            height: "600px",
          }}
         >
           <List>
