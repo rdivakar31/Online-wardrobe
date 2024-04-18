@@ -162,7 +162,22 @@ const OOTD = () => {
     };
 
     return (
-        <Box sx={{ flexGrow: 1, paddingLeft: '20px' }}>
+        <>
+            <Box className="header" 
+                sx={{ 
+                    backgroundColor: '#ffe8e8',
+                    display: 'flex',
+                    position: 'sticky',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    zIndex: 100,
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    padding: '10px 20px'
+                }}>
+                {/* 添加点击事件，点击 logo 时跳转到主页 */}
+                <img src='WWLogo.jpg' alt="Logo" style={{ width: '50px', cursor: 'pointer' }} onClick={() => navigate('/')} />
             {/* Dropdown menu */}
             {currentUser && (
             <select
@@ -179,7 +194,7 @@ const OOTD = () => {
                         handleSignOut(); 
                     }
                 }}
-                style={{ position: 'absolute', top: 10, right: 10 }}
+                style={{ position: 'absolute', top: 35, right: 55 }}
             >
                 <option value="OOTD">OOTD</option>
                 <option value="myCloset">My Closet</option>
@@ -188,6 +203,9 @@ const OOTD = () => {
                 <option value="signOut">Sign Out</option>
             </select>
             )}
+            </Box>
+        
+        <Box sx={{ flexGrow: 1, paddingLeft: '20px' }}>
             {/* Outfits grid */}
             <Grid container spacing={2} sx={{ mt: 2, '& .MuiGrid-item': { margin: '6px' } }}>
             {outfits.map((outfit, index) => (
@@ -292,6 +310,7 @@ const OOTD = () => {
                 </Box>
             </Modal>
         </Box>
+        </>
     );
 };
 export default OOTD;
