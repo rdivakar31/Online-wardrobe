@@ -320,10 +320,10 @@ const Home = () => {
           <div>
             {removeBgProcessing && <p style={{ color: 'red', fontSize: '12px'}}>{removeBgProcessing}</p>}
           </div>
-          <div className="confirmUpload" style={{marginBottom: '100px'}}>
+          <div className="confirmUpload" style={{marginBottom: '150px'}}>
             {previewUrl && (
               <>
-                <img className="imageUploaded" src={previewUrl} alt="Preview" style={{ marginTop:'10px', marginBottom:'20px',maxWidth: '100%', maxHeight: '300px'}}/>
+                <img className="imageUploaded" src={previewUrl} alt="Preview" style={{ marginTop:'10px', marginBottom:'15px',maxWidth: '100%', maxHeight: '300px'}}/>
                 {/*ref={bottomRef} */}
                 {processedFile &&   <button id="saveImage"  onClick={handleUpload}>Save to Closet</button>}
               </>
@@ -343,7 +343,7 @@ const Home = () => {
            }}>
         <img 
         className="homePageBanner" 
-        src="/outfit.png" 
+        src="/outfit.webp" 
         alt="outfit Banner"
         style={{ maxWidth: '100%', height: 'auto'}} 
         />
