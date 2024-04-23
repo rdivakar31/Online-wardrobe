@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 //import Form from 'react-bootstrap/Form';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import { useRef } from "react";
+import Typography from '@mui/material/Typography';
 
 
 const Home = () => {
@@ -179,25 +180,36 @@ const Home = () => {
 
   return (
     <>
+    <div style={{
+        paddingBottom: '100px',  // 这里设定一个比 footer 更高的底部内边距
+      }}>
     <Box className="header"
         sx={{ 
-            backgroundColor: '#ffe8e8',
+            backgroundColor: 'white',
             display: 'flex',
             position: 'sticky',
             top: 0,
             left: 0,
             right: 0,
             zIndex: 100,
-            justifyContent: 'space-between',
+            // justifyContent: 'space-between',
             alignItems: 'center',
-            padding: '10px 20px'
+            padding: '10px 20px',
         }}>
-          <img 
-              src='WWLogo.jpg' 
-              alt="Logo" 
-              style={{ width: '50px', cursor: 'pointer'}} 
-              onClick={() => navigate('/')} 
-          />
+        <img 
+            src='WWLogo.jpg' 
+            alt="Logo" 
+            style={{ width: '50px', cursor: 'pointer', marginRight: '10px' }}
+         />
+            <Typography variant="h6" sx={{
+                color: 'black',
+                fontWeight: 'bold',
+                fontFamily: 'Arial, sans-serif',
+                margin: 0, // 确保文本没有额外的外边距
+                display: 'inline' // 保持文本在同一行
+            }}>
+                Wardrobe Wizard
+            </Typography>
         {currentUser ? (
           <>
             <select onChange={(e) => {
@@ -212,7 +224,7 @@ const Home = () => {
                 handleSignOut();
               }
             }} /*style={{background: "none", border: "none", cursor: "pointer"}}*/
-            style={{ marginRight: '30px', background: "none", border: "none", cursor: "pointer" }}
+            style={{position: 'fixed',top: '30px',right: '15px', background: "none", border: "none", cursor: "pointer" }}
             >
               <option value="">{`Welcome, ${currentUser.displayName || 'User'}`}</option>
               <option value="myCloset">Account</option>
@@ -224,7 +236,7 @@ const Home = () => {
           </>
         ) : (
           <>
-            <div className="menuWrapper" style={{marginRight: '40px'}}>
+            <div className="menuWrapper" style={{position: 'fixed',top: '30px',right: '15px'}}>
               {/*<Link to="/Home">Home</Link>*/}
               {/*<Link to="/VirtualCloset">Virtual Closet</Link>*/}
               {/*<Link to="/AboutUs">About Us</Link>*/}
@@ -236,7 +248,15 @@ const Home = () => {
           </>
         )}
       </Box> 
-        <div className="homePageBannerMain" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className="homePageBannerMain" style={{ 
+          display: 'flex', 
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: 'auto', 
+          minHeight: '100vh',
+          width: '100%',
+          objectFit: 'cover', 
+           }}>
         <img 
         className="homePageBanner" 
         src="/homepage.webp" 
@@ -244,10 +264,26 @@ const Home = () => {
         style={{ maxWidth: '100%', height: 'auto'}} 
         />
         </div>
-        <div className="containerMiddle" style={{height:'1000px', width: '100%', marginTop : '100px'}}>
+        <div
+         style={{height: '80px', width: '100%'}}
+        >
+        </div>
+ 
+        <div className="containerMiddle" style={{
+          height:'650px', 
+          width: '50%', 
+          margin: '0 auto',
+          marginTop: '20px',
+          marginBottom: '20px',
+          backgroundColor: '#fff8f8',
+          padding: '80px',
+          borderRadius: '10px',
+          border: '1px solid #e0e0e0',
+          }}>
           {/*<div className="containerH1">*/}
           {/*</div>*/}
           <h1 style={{ textAlign: 'center'}}>Welcome to your AI Closet</h1>
+          <h2 style={{ textAlign: 'center'}}>Neat enough! - Let us take care of removing clothes background</h2>
           <p>Please select a category and upload your clothes</p>  
           <select value={mainCategory} onChange={handleMainCategoryChange} required>
           <option value="">Select Main Category</option>
@@ -296,9 +332,36 @@ const Home = () => {
           </div>
           {/*{uploadSuccess && <p style={{ color: 'red', fontSize: '12px' }}>Last uploaded file: ({lastUploadedFile?.category}), {lastUploadedFile?.name} has been saved to your closet!</p>}*/}
           </div>
+          <div className="homePageBannerMain" style={{ 
+          display: 'flex', 
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: 'auto', 
+          minHeight: '100vh',
+          width: '100%',
+          objectFit: 'cover', 
+           }}>
+        <img 
+        className="homePageBanner" 
+        src="/outfit.png" 
+        alt="outfit Banner"
+        style={{ maxWidth: '100%', height: 'auto'}} 
+        />
+        </div>
+        </div>
         {/*<footer className="footer">Footer Content Will Go Here</footer>*/}
         {/* </Box> */}
-        <div className='footer'>
+        <div className="footer" style={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: '50px',
+        backgroundColor: 'black',
+        color: 'white',
+        textAlign: 'center',
+        padding: '20px',
+      }}>
           <div className='social-media-icons'>
             <img src="/facebook.png" alt="facebook icon" />
             <img src="/instagram.png" alt="instagram icon" />
