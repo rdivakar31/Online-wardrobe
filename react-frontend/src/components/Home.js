@@ -6,13 +6,11 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import { getDownloadURL } from "firebase/storage";
 import { doSignOut } from "../firebase/FirebaseFunctions";
+import Box from '@mui/material/Box';
 //import Form from 'react-bootstrap/Form';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import { useRef } from "react";
 
-
-// import the home page css
-import "./Home.css";
 
 const Home = () => {
   const currentUser = useContext(AuthContext);
@@ -180,10 +178,26 @@ const Home = () => {
   };
 
   return (
-    <section className="containerHP">
-        <header className="headerHP">
-          <img src='WWLogo.jpg'/>
-        <div className="loginMenu">
+    <>
+    <Box className="header"
+        sx={{ 
+            backgroundColor: '#ffe8e8',
+            display: 'flex',
+            position: 'sticky',
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 100,
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '10px 20px'
+        }}>
+          <img 
+              src='WWLogo.jpg' 
+              alt="Logo" 
+              style={{ width: '50px', cursor: 'pointer'}} 
+              onClick={() => navigate('/')} 
+          />
         {currentUser ? (
           <>
             <select onChange={(e) => {
@@ -197,7 +211,9 @@ const Home = () => {
               else if (e.target.value === 'signOut') {
                 handleSignOut();
               }
-            }} /*style={{background: "none", border: "none", cursor: "pointer"}}*/>
+            }} /*style={{background: "none", border: "none", cursor: "pointer"}}*/
+            style={{ marginRight: '30px', background: "none", border: "none", cursor: "pointer" }}
+            >
               <option value="">{`Welcome, ${currentUser.displayName || 'User'}`}</option>
               <option value="myCloset">Account</option>
               <option value="myCloset">My Closet</option>
@@ -208,27 +224,30 @@ const Home = () => {
           </>
         ) : (
           <>
-            <div className="menuWrapper">
+            <div className="menuWrapper" style={{marginRight: '40px'}}>
               {/*<Link to="/Home">Home</Link>*/}
               {/*<Link to="/VirtualCloset">Virtual Closet</Link>*/}
               {/*<Link to="/AboutUs">About Us</Link>*/}
-              <Link to="/register" style={{ color: 'black' }}>Sign Up |</Link>
+              <Link to="/register" style={{ color: 'black', fontSize: '14px'}}>Sign Up |</Link>
               {/* <span style={{ color: 'black' }}>{" | "}</span> */}
-              <Link to="/login" style={{ color: 'black' }}>Login</Link>
+              <Link to="/login" style={{ color: 'black',fontSize: '14px'}}>Login</Link>
               {/*<Link to="/Home" className="LogOUT">Logout</Link>*/}
           </div>
           </>
         )}
-      </div>
-        </header>
-        <div className="homePageBannerMain">
-        <img className="homePageBanner" src="/homeMainImagOne.jpg" />
-        <h1>Welcome to your AI Closet</h1>
+      </Box> 
+        <div className="homePageBannerMain" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <img 
+        className="homePageBanner" 
+        src="/homepage.webp" 
+        alt="Homepage Banner"
+        style={{ maxWidth: '100%', height: 'auto'}} 
+        />
         </div>
-        <div className="containerMiddle">
-          <div className="containerMiddleForm">
+        <div className="containerMiddle" style={{height:'1000px', width: '100%', marginTop : '100px'}}>
           {/*<div className="containerH1">*/}
           {/*</div>*/}
+          <h1 style={{ textAlign: 'center'}}>Welcome to your AI Closet</h1>
           <p>Please select a category and upload your clothes</p>  
           <select value={mainCategory} onChange={handleMainCategoryChange} required>
           <option value="">Select Main Category</option>
@@ -265,10 +284,10 @@ const Home = () => {
           <div>
             {removeBgProcessing && <p style={{ color: 'red', fontSize: '12px'}}>{removeBgProcessing}</p>}
           </div>
-          <div className="confirmUpload">
+          <div className="confirmUpload" style={{marginBottom: '100px'}}>
             {previewUrl && (
               <>
-                <img className="imageUploaded" src={previewUrl} alt="Preview" style={{ marginTop:'10px', marginBottom:'20px',}}/>
+                <img className="imageUploaded" src={previewUrl} alt="Preview" style={{ marginTop:'10px', marginBottom:'20px',maxWidth: '100%', maxHeight: '300px'}}/>
                 {/*ref={bottomRef} */}
                 {processedFile &&   <button id="saveImage"  onClick={handleUpload}>Save to Closet</button>}
               </>
@@ -277,16 +296,16 @@ const Home = () => {
           </div>
           {/*{uploadSuccess && <p style={{ color: 'red', fontSize: '12px' }}>Last uploaded file: ({lastUploadedFile?.category}), {lastUploadedFile?.name} has been saved to your closet!</p>}*/}
           </div>
-        </div>
         {/*<footer className="footer">Footer Content Will Go Here</footer>*/}
-        <div className='start-page-footer'>
+        {/* </Box> */}
+        <div className='footer'>
           <div className='social-media-icons'>
             <img src="/facebook.png" alt="facebook icon" />
             <img src="/instagram.png" alt="instagram icon" />
             <img src="/linkedin.png" alt="linkedin icon" />
           </div>
         </div>
-    </section>
+    </>
   );
 };
 
